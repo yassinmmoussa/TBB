@@ -173,7 +173,6 @@ public class TactilePlayer extends Player {
                     if (arg0.getState() == PinState.HIGH) {
                         if (sp.userInput) {
                             sp.skip(param);
-                            logger.log(Level.INFO, "Button {0} was pressed", index+1);
                             sp.userInput = false;
                         }   
                     }
@@ -208,8 +207,6 @@ public class TactilePlayer extends Player {
                     if (arg0.getState() == PinState.HIGH) {
                         if (sp.userInput) {
     						repeat++;
-    						logger.log(Level.INFO, "Repeat Button was pressed.");
-    						logger.log(Level.INFO, "Repeat Button was pressed {0} times", repeat);
     						sp.repeatText();
     					}
                     }

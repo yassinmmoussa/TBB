@@ -38,7 +38,7 @@ public class ScenarioParser
     	//To find out what's being logged, search and find any "logger.log" calls.
     	FileHandler fileHandler = null;
 		try {
-			fileHandler = new FileHandler(System.getProperty("user.dir") + File.separator + "logs" + File.separator + "parser log.log", 0, 1);
+			fileHandler = new FileHandler(System.getProperty("user.dir") + File.separator + "logs" + File.separator + "parser log.log.txt", 0, 1);
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

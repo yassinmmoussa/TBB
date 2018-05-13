@@ -71,6 +71,10 @@ public class GUI extends JFrame {
 	 * the UI is closed.
 	 */
 	public GUI() {
+		
+		File logDir = new File(System.getProperty("user.dir") + File.separator + "logs");
+		logDir.mkdirs();
+		
 		this.setTitle("Authoring App");
 		this.getAccessibleContext().setAccessibleName("Authoring App");
 		this.getAccessibleContext().setAccessibleDescription(
@@ -78,10 +82,19 @@ public class GUI extends JFrame {
 
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		
+		
+		//Formatting the Logger for the player class, which all its child classes uses. 
+		//Change the formatting as needed. 
+		//Currently, it's set to ConsoleHandler instead of FileHandler. It will write the log
+		//to the console. 
+		//Eventually, we'll need to have it save to a file. Simply change ConsoleHandler to FileHandler,
+		//and set the output to the appropriate directory. 
+		
+		//To find out what's being logged, search and find any "logger.log" calls.
 		//Scenario creation logger
 		FileHandler fileHandler = null;
 		try {
-			fileHandler = new FileHandler(System.getProperty("user.dir") + File.separator + "logs" + File.separator + "userActions.log", 0, 1);
+			fileHandler = new FileHandler(System.getProperty("user.dir") + File.separator + "logs" + File.separator + "userActions.log.txt", 0, 1);
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

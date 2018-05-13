@@ -170,7 +170,6 @@ public class AudioPlayer extends Player {
                 if (e.getKeyCode() == (index + ONE)) {
                     if (sp.userInput) {
                         sp.skip(param);
-                        logger.log(Level.INFO, "Button {0} was pressed", index+1);
                         sp.userInput = false;
                     }
                 }
@@ -214,8 +213,6 @@ public class AudioPlayer extends Player {
                 if (e.getKeyChar() == index + '0') {
                     if (sp.userInput) {
                         repeat++;
-						logger.log(Level.INFO, "Repeat Button was pressed.");
-						logger.log(Level.INFO, "Repeat Button was pressed {0} times", repeat);
                         sp.repeatText();
                     }
                 }

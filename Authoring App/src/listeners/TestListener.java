@@ -66,26 +66,7 @@ public class TestListener implements ActionListener {
 		List<PlayerCommand> list = gui.getLeftPanel().getList();
 		sb.append(parseCommands(list));
 
-		// sb now contains the export file contents
-//		JFileChooser save = new JFileChooser("SampleScenarios/");
-//
-//		FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("text files (*.txt)", "txt");
-//		save.addChoosableFileFilter(txtFilter);
-//		save.setFileFilter(txtFilter);
-//
-//		save.showSaveDialog(null);
-//
-//		// Check to see if any file was set
-//		file = save.getSelectedFile();
-//		if (file == null) {
-//			return;
-//		}
-//
-//		// Get the file and fix the extension if it's wrong
-//		if (!FilenameUtils.getExtension(file.getName()).equalsIgnoreCase("txt")) {
-//			file = new File(file.toString() + ".txt");
-//		}
-		//if (file.exists()) {file.delete();}
+		
 		if (gui.loadedFile != null)
 		{
 			file = new File(gui.loadedFile.getPath() + System.getProperty("file.separator") + "test.txt");
