@@ -2,6 +2,10 @@ package common;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,6 +43,21 @@ public class MainThread implements Runnable {
 					@Override
 					public void windowClosing(WindowEvent arg0) {
 						// TODO Auto-generated method stub
+						
+						
+						File functionCounter = new File(frame.functionCounter.toString());
+						BufferedWriter wr = null;
+						try {
+							functionCounter.createNewFile();
+							wr = new BufferedWriter(new FileWriter(functionCounter));
+							wr.write(frame.counterMap.toString());
+							wr.close();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							System.err.println("File creation failed, please contact an administrator.");
+						}
+						
 						
 						if (!frame.getLeftPanel().getList().isEmpty())
 						{
