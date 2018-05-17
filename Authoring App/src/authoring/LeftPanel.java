@@ -168,27 +168,12 @@ public class LeftPanel extends JPanel implements KeyListener, MouseListener {
 		if (commandList.getModel().getSize() > initialSize)
 		{
 			commandList.setSelectedIndex(commandList.getModel().getSize() - 1);
-		}
-		
-		PlayerCommand cmd = commandList.getModel().getElementAt(commandList.getSelectedIndex());
-		
-		
-		this.deleteItem();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		listModel.insertElementAt(cmd, selectedIndex);
-		
-		
+			PlayerCommand cmd = commandList.getModel().getElementAt(commandList.getSelectedIndex());			
+			this.deleteItem();
+			listModel.insertElementAt(cmd, selectedIndex);
+			
+			
+		}	
 		
 	}
 
