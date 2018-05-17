@@ -24,6 +24,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import commands.PlayerCommand;
+import listeners.NewButtonListener;
 
 /**
  * LeftPanel is the abstraction which is used to store the list of commands. It
@@ -45,7 +46,7 @@ public class LeftPanel extends JPanel implements KeyListener, MouseListener {
 	int index=-1;
 
 	private GUI gui;
-
+	private NewButtonListener newListener = new NewButtonListener(this.gui);
 	
 	private HashMap<KeyStroke, Action> actionMap = new HashMap<KeyStroke, Action>();
 
@@ -153,6 +154,43 @@ public class LeftPanel extends JPanel implements KeyListener, MouseListener {
 		// Update the highlight position
 		commandList.setSelectedIndex(selectedIndex + 1);
 	}
+	
+	/**
+	 * Inserts a new element before the currently selected element
+	 */
+	public void insertBefore()
+	{
+		int selectedIndex = commandList.getSelectedIndex();
+		int initialSize = commandList.getModel().getSize();
+		
+		gui.getRightPanel().btnNew.doClick();
+		
+		if (commandList.getModel().getSize() > initialSize)
+		{
+			commandList.setSelectedIndex(commandList.getModel().getSize() - 1);
+		}
+		
+		PlayerCommand cmd = commandList.getModel().getElementAt(commandList.getSelectedIndex());
+		
+		
+		this.deleteItem();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		listModel.insertElementAt(cmd, selectedIndex);
+		
+		
+		
+	}
 
 	/**
 	 * Remove the currently selected element from the list completely.
@@ -243,6 +281,18 @@ public class LeftPanel extends JPanel implements KeyListener, MouseListener {
 				deleteItem();
 			}
 		  });
+		  
+		  KeyStroke key4 = KeyStroke.getKeyStroke(KeyEvent.VK_I, KeyEvent.SHIFT_DOWN_MASK);
+		  actionMap.put(key4, new AbstractAction("action4") {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+				insertBefore();		
+					}
+			  
+				  }
+				  );
 		  // add more actions..
 
 		  KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
@@ -252,7 +302,7 @@ public class LeftPanel extends JPanel implements KeyListener, MouseListener {
 		    public boolean dispatchKeyEvent(KeyEvent e) {
 		      KeyStroke keyStroke = KeyStroke.getKeyStrokeForEvent(e);
 		      if ( actionMap.containsKey(keyStroke) ) {
-		    	  if (commandList.getModel().getSize() <= 0) return false;
+		    	  if (commandList.getModel().getSize() <= 0 || commandList.isSelectionEmpty() ) return false;
 		        final Action a = actionMap.get(keyStroke);
 		        final ActionEvent ae = new ActionEvent(e.getSource(), e.getID(), null );
 		        SwingUtilities.invokeLater( new Runnable() {
